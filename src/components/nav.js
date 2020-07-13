@@ -9,7 +9,7 @@ function Nav() {
                 <Link to="/">
                     <li>Главная</li>
                 </Link>
-                <Link to="/addpost">
+                <Link to="/add-post">
                     <li>Добавить</li>
                 </Link>
             </ul>

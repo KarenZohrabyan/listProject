@@ -1,31 +1,49 @@
-import React, {useState} from 'react';
-import { Editor } from '@tinymce/tinymce-react'; 
+import React, { useState } from 'react';
+import { Editor } from '@tinymce/tinymce-react';
+import { EDITOR_API_KEY } from '../config';
+import { useDispatch } from 'react-redux';
+import { add } from '../store/posts';
+import { useHistory } from 'react-router-dom';
 
 
 
 function Former() {
-
-    const [title,subtitle] = useState('')
+    const dispatch = useDispatch();
+    const [content, setContent] = useState('');
+    const history = useHistory();
+    
     const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(title)
+        e.preventDefault();
+        if(content.length === 0){
+            return;
+        }
+        dispatch(add({
+            name: e.target.elements['post-name'].value, 
+            author: e.target.elements['author-name'].value, 
+            date: new Date().toISOString().slice(0,10), 
+            content
+        }));
+        history.push('/')
     }
-
 
     return (
         <div className="form">
             <form onSubmit={handleSubmit} className="subform">
-                <label for="fname">Имя автора</label><br></br>
-                <input type="text" id="fname" name="fname" ></input><br></br>
-                <label for="fname">Заголовок записи</label><br></br>
-                <input type="text" id="fname" name="fname" ></input><br></br>
-                <label for="lname">Контент записи</label><br></br>
+                <label htmlFor="fname">Имя автора</label><br></br>
+                <input required type="text" id="author-name" name="author-name" ></input><br></br>
+                <label htmlFor="fname">Заголовок записи</label><br></br>
+                <input required type="text" id="post_name" name="post-name" ></input><br></br>
+                <label htmlFor="lname">Контент записи</label><br></br>
                 <Editor
-                initialValue="<p></p>"
-                apiKey='5f4qa39o2piv8j058xe2ipo8n11mljv4ow6yby38546hrc3t'
+                    initialValue="<p></p>"
+                    apiKey={EDITOR_API_KEY}
+                    required
+                    initialValue='Опишите ваш пост...'
+                    value={content}
+                    onEditorChange={setContent}
                 />
                 <input type="submit" value="Submit"></input>
-            </form> 
+            </form>
         </div>
     );
 }

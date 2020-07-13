@@ -1,41 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-
-function Post() {
+function Post({ data }) {
     return (
         <div className="post-container">
-            <div class="post-item">
-                <h2 className="name">Имя автора</h2>
-                <p>Заголовок записи</p>
-            </div>
-            <div class="post-item">
-                <h2 className="name">Имя автора</h2>
-                <p>Заголовок записи</p>
-            </div>
-            <div class="post-item">
-                <h2 className="name">Имя автора</h2>
-                <p>Заголовок записи</p>
-            </div>
-            <div class="post-item">
-                <h2 className="name">Имя автора</h2>
-                <p>Заголовок записи</p>
-            </div>
-            <div class="post-item">
-                <h2 className="name">Имя автора</h2>
-                <p>Заголовок записи</p>
-            </div>
-            <div class="post-item">
-                <h2 className="name">Имя автора</h2>
-                <p>Заголовок записи</p>
-            </div>
-            <div class="post-item">
-                <h2 className="name">Имя автора</h2>
-                <p>Заголовок записи</p>
-            </div>
-            <div class="post-item">
-                <h2 className="name">Имя автора</h2>
-                <p>Заголовок записи</p>
-            </div>
+            {data.length > 0 ?
+                data.map((elem, index) => <div key={index} className="post-item">
+                    <h2 className="name">{elem.name}</h2>
+                    <p>{elem.date}</p>
+                    <p>{elem.author}</p>
+                </div>)
+                : <div>Вы пока не создали ни одной записи, <Link to='/add-post'>Создайте одну</Link></div>}
         </div>
     );
 }
