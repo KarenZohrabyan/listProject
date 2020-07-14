@@ -23,8 +23,8 @@ function Former() {
             date: new Date().toISOString().slice(0,10), 
             content
         }));
-        history.push('/')
-    }
+        history.push('/');
+    };
 
     return (
         <div className="form">
@@ -49,4 +49,4 @@ function Former() {
 }
 
 
-export default Former
+export default Former;

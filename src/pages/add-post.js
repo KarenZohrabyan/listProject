@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Nav from '../components/nav';
 import Former from '../components/form';
 
@@ -13,4 +13,4 @@ function AddPost() {
 }
 
 
-export default AddPost
+export default AddPost;

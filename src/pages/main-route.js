@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Nav from '../components/nav';
 import Post from '../components/post';
 import { useSelector } from 'react-redux';
@@ -14,4 +14,4 @@ function MPage() {
 }
 
 
-export default MPage
+export default MPage;

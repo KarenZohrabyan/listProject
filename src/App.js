@@ -12,7 +12,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={MPage} />
           <Route path="/add-post" component={AddPost}></Route>
-          <Route path="/posts" component={Posts} />
+          <Route path="/posts/:index" component={Posts} />
           <Route path='*' component={() => <h1>Not found</h1>} />
         </Switch>
       </div>
